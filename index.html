@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BVR Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container header-row">
+      <a class="brand" href="#">
+        <span class="brand-mark">B</span>
+        <span class="brand-name">BVR</span>
+      </a>
+      <div class="top-info">
+        <span class="top-info__value">591 ₴</span>
+        <span class="top-info__divider">/</span>
+        <span class="top-info__value">44.15</span>
+        <button class="top-info__toggle">▼</button>
+      </div>
+      <nav class="nav">
+        <a href="#about">Про банк</a>
+        <a href="#cards">Картки ▼</a>
+        <a href="#tariffs">Тарифи</a>
+        <a href="#bonus">Балобонуси</a>
+        <a href="#savings">Заощадження ▼</a>
+        <a href="#credits">Кредити ▼</a>
+        <a href="#support">Твоя підтримка</a>
+        <a href="#faq">Питання</a>
+      </nav>
+      <div class="auth-buttons">
+        <div id="user-avatar" class="user-avatar" aria-hidden="true"></div>
+        <button id="login-trigger" class="login-trigger" type="button">Увійти</button>
+        <button id="register-trigger" class="register-trigger" type="button">Зареєструватися</button>
+        <button id="create-card-header-button" class="button button-secondary topbar-card-button" type="button">Створити картку</button>
+      </div>
+      <button class="admin-trigger" type="button">Developer</button>
+    </div>
+  </header>
+
+  <div class="mandarin-bg">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-label">Смачніше за кешбек!</span>
+        <h1 class="hero-title">1% балобонусів</h1>
+        <p class="hero-text">з кожної покупки у <strong>Сільпо</strong> з карткою Банк Власний Рахунок</p>
+        <a href="#bonus" class="button button-primary">Більше балобонусів</a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card__top">
+            <span class="hero-card__label">BVR</span>
+            <span class="hero-card__balance">591 ₴</span>
+          </div>
+          <div class="hero-card__chip"></div>
+          <div class="hero-card__number">5469 3287 7421 0014</div>
+          <div class="hero-card__footer">
+            <span>VALID THRU 09/29</span>
+            <strong>O. ДЕВЕЛОПЕР</strong>
+          </div>
+          <div class="hero-card__accent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="section feature-panel">
+      <div class="container">
+        <div class="feature-card">
+          <p class="feature-heading">Це — моя турбота про тебе, щоб ти міг потурбуватися про своїх</p>
+          <div class="feature-grid">
+            <div class="feature-item">Відкриття онлайн</div>
+            <div class="feature-item">Безготівкове поповнення без комісій</div>
+            <div class="feature-item">Платежі та перекази з власних коштів без комісій</div>
+            <div class="feature-item">5% річних з Назбирарусом</div>
+            <div class="feature-item">Поповнення готівкою на касах «Сільпо» без комісій</div>
+            <div class="feature-item">+1% балобонусами у «Сільпо»</div>
+            <div class="feature-item">Зняття готівки в «Сільпо» та інших мережах, АЗС, аптеках</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cards" class="section product-panel">
+      <div class="container product-grid">
+        <div class="product-card product-card--image"></div>
+        <div class="product-card product-card--info">
+          <span class="section-label">Це – мій мобільний застосунок</span>
+          <h2>Отримай картку онлайн</h2>
+          <ol class="steps-list">
+            <li><strong>Завантаж</strong> Банк Власний Рахунок</li>
+            <li>Заповни анкету та надай документи. Через Дію — дуже зручно!</li>
+            <li>Отримай віртуальну картку та користуйся одразу</li>
+            <li>Потрібна пластикова картка? Візьми на касі в «Сільпо»</li>
+          </ol>
+          <div class="app-links">
+            <span class="app-link">Google Play</span>
+            <span class="app-link">App Store</span>
+            <span class="app-link">AppGallery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-manager">
+        <div class="cards-manager__header">
+          <div>
+            <span class="section-label">Мої картки</span>
+            <h2>Керуй своїми картками тут</h2>
+          </div>
+          <button id="create-card-button" type="button" class="button button-secondary">Створити картку</button>
+        </div>
+
+        <div id="cards-list" class="cards-list"></div>
+
+        <form id="card-form" class="card-form hidden">
+          <h3>Нова картка</h3>
+          <div class="form-group">
+            <label for="card-name">Назва картки:</label>
+            <input type="text" id="card-name" placeholder="Моя картка" required>
+          </div>
+          <div class="form-group">
+            <label for="card-type">Тип:</label>
+            <select id="card-type">
+              <option value="Visa">Visa</option>
+              <option value="Mastercard">Mastercard</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="card-balance">Початковий баланс (UAH):</label>
+            <input type="number" id="card-balance" min="0" step="10" value="0">
+          </div>
+          <div class="card-form__buttons">
+            <button type="submit" class="button button-primary">Зберегти картку</button>
+            <button type="button" id="card-cancel" class="button button-secondary">Скасувати</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="services" class="section final-section">
+      <div class="container">
+        <h2>Як активувати пластикову картку?</h2>
+        <div class="activation-panel">
+          <div class="activation-text">
+            <h3>Легесенько! Бери до рук картку та смартфон і почнемо:</h3>
+            <ol class="activation-steps">
+              <li>Завантажуй застосунок Банк Власний Рахунок</li>
+              <li>Пройди реєстрацію у застосунку, тобі потрібна Дія або паспорт громадянина України</li>
+              <li>Зайди в меню картки та тисни "Активувати пластикову картку"</li>
+            </ol>
+            <p class="activation-note">Після купівлі картки на касі «Сільпо» повернути картку неможливо, під карткою розуміється пластикова заготовка</p>
+          </div>
+          <div class="activation-visual"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <p>© 2026 BVR Bank. Всі права захищено.</p>
+    </div>
+  </footer>
+
+  <div class="admin-panel" aria-hidden="true">
+    <div class="admin-panel__content">
+      <div class="admin-panel__header">
+        <div>
+          <p class="admin-panel__label">Адмін панель</p>
+          <h2>Режим керування</h2>
+        </div>
+        <button class="admin-panel__close" aria-label="Закрити адмін панель">×</button>
+      </div>
+      <p class="admin-panel__description">Натисни <strong>Ctrl + Alt + E</strong>, щоб відкрити або закрити панель.</p>
+      <div class="admin-panel__status">Статус: чекаю дії...</div>
+      <div class="admin-panel__grid">
+        <button class="admin-panel__button" data-action="status">Перевірка стану</button>
+        <button class="admin-panel__button" data-action="tests">Тести</button>
+        <button class="admin-panel__button" data-action="reload">Перезавантажити UI</button>
+        <button class="admin-panel__button" data-action="info">Відомості</button>
+        <button class="admin-panel__button" data-action="console">Консоль розробника</button>
+        <button class="admin-panel__button" data-action="profiles">Профілі</button>
+      </div>
+      <div class="admin-profiles" style="display: none;">
+        <div class="admin-profiles__header">
+          <h3>Керування профілями</h3>
+          <button class="admin-profiles__close" type="button" aria-label="Закрити">×</button>
+        </div>
+        <div id="profiles-list" class="admin-profiles__list"></div>
+      </div>
+      <div class="console-modal" style="display: none;">
+        <div class="console-modal__content">
+          <h3>Консоль розробника</h3>
+          <textarea id="console-input" placeholder="Введіть JavaScript код тут..."></textarea>
+          <div class="console-modal__buttons">
+            <button id="console-run">Виконати</button>
+            <button id="console-close">Закрити</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-modal" style="display: none;">
+    <div class="login-modal__content">
+      <h3 id="login-title">Увійти</h3>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Ім'я користувача:</label>
+          <input type="text" id="username" required>
+        </div>
+        <div class="form-group email-group hidden">
+          <label for="email">Електронна пошта:</label>
+          <input type="email" id="email" placeholder="example@mail.com">
+        </div>
+        <div class="form-group phone-group hidden">
+          <label for="phone">Номер телефону:</label>
+          <input type="tel" id="phone" placeholder="+380 99 123 45 67">
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" required>
+        </div>
+        <div class="login-modal__buttons">
+          <button type="submit" id="login-submit">Увійти</button>
+          <button type="button" id="login-toggle">Зареєструватися</button>
+          <button type="button" id="login-close">Закрити</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="profile-modal" style="display: none;">
+    <div class="profile-modal__content">
+      <h3>Мій профіль</h3>
+      <div class="profile-modal__avatar">
+        <div class="profile-avatar-preview">?</div>
+        <button type="button" class="profile-modal__change-avatar">Змінити зображення</button>
+      </div>
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="profile-nickname">Нікнейм:</label>
+          <input type="text" id="profile-nickname" placeholder="Вкажіть нікнейм" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-email">Електронна пошта:</label>
+          <input type="email" id="profile-email" placeholder="example@mail.com" required>
+        </div>
+        <div class="form-group">
+          <label for="profile-avatar">Аватар (URL):</label>
+          <input type="url" id="profile-avatar" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label for="profile-avatar-file">Аватар з файлу:</label>
+          <input type="file" id="profile-avatar-file" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label for="profile-current-password">Поточний пароль:</label>
+          <input type="password" id="profile-current-password" placeholder="Для зміни пароля">
+        </div>
+        <div class="form-group">
+          <label for="profile-password">Новий пароль:</label>
+          <input type="password" id="profile-password" placeholder="Новий пароль">
+        </div>
+        <div class="profile-modal__buttons">
+          <button type="submit" id="profile-save">Зберегти</button>
+          <button type="button" id="profile-logout">Вийти</button>
+          <button type="button" id="profile-close">Закрити</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginModal = document.querySelector('.login-modal');
+      const loginTrigger = document.getElementById('login-trigger');
+      const registerTrigger = document.getElementById('register-trigger');
+      const loginClose = document.getElementById('login-close');
+      const loginToggle = document.getElementById('login-toggle');
+      const loginForm = document.getElementById('login-form');
+      const loginTitle = document.getElementById('login-title');
+      const loginSubmit = document.getElementById('login-submit');
+      const usernameInput = document.getElementById('username');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const passwordInput = document.getElementById('password');
+      const emailGroup = document.querySelector('.email-group');
+      const phoneGroup = document.querySelector('.phone-group');
+      const authButtons = document.querySelector('.auth-buttons');
+      const adminProfiles = document.querySelector('.admin-profiles');
+      const profilesList = document.getElementById('profiles-list');
+      const profilesClose = document.querySelector('.admin-profiles__close');
+
+      const adminPanel = document.querySelector('.admin-panel');
+      const adminClose = document.querySelector('.admin-panel__close');
+      const adminTrigger = document.querySelector('.admin-trigger');
+      const adminStatus = document.querySelector('.admin-panel__status');
+      const adminButtons = document.querySelectorAll('.admin-panel__button');
+      const consoleModal = document.querySelector('.console-modal');
+      const consoleRun = document.getElementById('console-run');
+      const consoleClose = document.getElementById('console-close');
+      const consoleInput = document.getElementById('console-input');
+      const profileModal = document.querySelector('.profile-modal');
+      const profileClose = document.getElementById('profile-close');
+      const profileForm = document.getElementById('profile-form');
+      const profileNicknameInput = document.getElementById('profile-nickname');
+      const profileEmailInput = document.getElementById('profile-email');
+      const profileAvatarInput = document.getElementById('profile-avatar');
+      const profileAvatarFileInput = document.getElementById('profile-avatar-file');
+      const profileAvatarChangeButton = document.querySelector('.profile-modal__change-avatar');
+      const profileCurrentPasswordInput = document.getElementById('profile-current-password');
+      const profilePasswordInput = document.getElementById('profile-password');
+      const profileLogout = document.getElementById('profile-logout');
+      const profilePreview = document.querySelector('.profile-avatar-preview');
+      const userAvatar = document.getElementById('user-avatar');
+      const createCardButton = document.getElementById('create-card-button');
+      const createCardHeaderButton = document.getElementById('create-card-header-button');
+      const cardsList = document.getElementById('cards-list');
+      const cardForm = document.getElementById('card-form');
+      const cardNameInput = document.getElementById('card-name');
+      const cardTypeSelect = document.getElementById('card-type');
+      const cardBalanceInput = document.getElementById('card-balance');
+      const cardCancel = document.getElementById('card-cancel');
+      const pageLoader = document.querySelector('.page-loader');
+
+      if (!loginTrigger || !registerTrigger || !loginClose || !loginToggle || !loginForm || !loginTitle || !loginSubmit || !usernameInput || !passwordInput || !emailInput || !phoneInput || !emailGroup || !phoneGroup || !profileForm || !profileNicknameInput || !profileEmailInput || !profileAvatarInput || !profileAvatarFileInput || !profileCurrentPasswordInput || !profilePasswordInput || !profileLogout || !profileAvatarChangeButton || !createCardButton || !createCardHeaderButton || !cardsList || !cardForm || !cardNameInput || !cardTypeSelect || !cardBalanceInput || !cardCancel) {
+        return;
+      }
+
+      let isLoginMode = true;
+
+      function loadUsers() {
+        const users = localStorage.getItem('bvr_users');
+        return users ? JSON.parse(users) : {};
+      }
+
+      function saveUsers(users) {
+        localStorage.setItem('bvr_users', JSON.stringify(users));
+      }
+
+      function isLoggedIn() {
+        return localStorage.getItem('bvr_current_user') !== null;
+      }
+
+      function getCurrentUser() {
+        return localStorage.getItem('bvr_current_user');
+      }
+
+      function loginUser(username, password) {
+        const users = loadUsers();
+        const user = users[username];
+        if (!user) {
+          return false;
+        }
+        const storedPassword = typeof user === 'string' ? user : user.password;
+        if (storedPassword === password) {
+          localStorage.setItem('bvr_current_user', username);
+          return true;
+        }
+        return false;
+      }
+
+      function registerUser(username, password, email, phone) {
+        const users = loadUsers();
+        if (users[username]) {
+          return false;
+        }
+        users[username] = { password, email, phone, verified: false, nickname: username, avatar: '' };
+        saveUsers(users);
+        localStorage.setItem('bvr_current_user', username);
+        return true;
+      }
+
+      function getDisplayName() {
+        const username = getCurrentUser();
+        if (!username) return 'Профіль';
+        const users = loadUsers();
+        const user = users[username];
+        if (!user) return username;
+        if (typeof user === 'string') return username;
+        return user.nickname || username;
+      }
+
+      function getCurrentUserData() {
+        const username = getCurrentUser();
+        if (!username) return null;
+        const users = loadUsers();
+        const user = users[username];
+        if (!user) return null;
+        if (typeof user === 'string') {
+          return { username, password: user, email: '', phone: '', verified: false, nickname: username, avatar: '' };
+        }
+        return {
+          username,
+          password: user.password,
+          email: user.email || '',
+          phone: user.phone || '',
+          verified: user.verified || false,
+          nickname: user.nickname || username,
+          avatar: user.avatar || ''
+        };
+      }
+
+      function openProfileModal() {
+        const current = getCurrentUserData();
+        if (!current || !profileModal) return;
+        profileNicknameInput.value = current.nickname;
+        profileEmailInput.value = current.email;
+        profileAvatarInput.value = current.avatar;
+        if (profileAvatarFileInput) profileAvatarFileInput.value = '';
+        profileCurrentPasswordInput.value = '';
+        profilePasswordInput.value = '';
+        if (profilePreview) {
+          if (current.avatar) {
+            profilePreview.style.backgroundImage = `url(${current.avatar})`;
+            profilePreview.textContent = '';
+          } else {
+            profilePreview.style.backgroundImage = 'none';
+            profilePreview.textContent = current.nickname ? current.nickname[0].toUpperCase() : '?';
+          }
+        }
+        profileModal.style.display = 'grid';
+      }
+
+      function closeProfileModal() {
+        if (profileModal) profileModal.style.display = 'none';
+      }
+
+      function saveProfileChanges(event) {
+        event.preventDefault();
+        const username = getCurrentUser();
+        if (!username) return;
+        const users = loadUsers();
+        const user = users[username];
+        if (!user || typeof user === 'string') return;
+        const currentPassword = profileCurrentPasswordInput.value.trim();
+        const newPassword = profilePasswordInput.value.trim();
+        const email = profileEmailInput.value.trim();
+        const nickname = profileNicknameInput.value.trim() || username;
+        const avatar = profileAvatarInput.value.trim();
+
+        if (!email) {
+          alert('Потрібно ввести електронну пошту.');
+          return;
+        }
+
+        if (newPassword && currentPassword !== user.password) {
+          alert('Поточний пароль введено невірно.');
+          return;
+        }
+
+        if (newPassword) {
+          user.password = newPassword;
+        }
+        user.email = email;
+        user.nickname = nickname;
+        user.avatar = avatar;
+        saveUsers(users);
+        updateLoginButton();
+        renderUserProfiles();
+        renderCards();
+        updateHeroCard();
+        updateStatus('Ваш профіль оновлено.');
+        closeProfileModal();
+      }
+
+      function loadCards() {
+        const cards = localStorage.getItem('bvr_cards');
+        return cards ? JSON.parse(cards) : {};
+      }
+
+      function saveCards(cards) {
+        localStorage.setItem('bvr_cards', JSON.stringify(cards));
+      }
+
+      function getCurrentUserCards() {
+        const cards = loadCards();
+        const user = getCurrentUser();
+        return (cards[user] || []).map(card => ({
+          ...card,
+          number: card.number || '0000 0000 0000 0000',
+          balance: card.balance || 0,
+          type: card.type || 'Visa'
+        }));
+      }
+
+      function formatCardNumber(number) {
+        return number.replace(/(.{4})/g, '$1 ').trim();
+      }
+
+      function renderCards() {
+        if (!cardsList) return;
+        if (!isLoggedIn()) {
+          cardsList.innerHTML = '<div class="cards-empty">Увійдіть, щоб створювати та переглядати свої картки.</div>';
+          return;
+        }
+        const cards = getCurrentUserCards();
+        if (cards.length === 0) {
+          cardsList.innerHTML = '<div class="cards-empty">У вас ще немає карток. Створіть першу картку.</div>';
+          return;
+        }
+        cardsList.innerHTML = cards.map(card => `
+          <div class="card-tile">
+            <div class="card-tile__title">${card.name}</div>
+            <div class="card-tile__number">${formatCardNumber(card.number)}</div>
+            <div class="card-tile__info">
+              <span>${card.type}</span>
+              <span>${card.balance} ₴</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function openCardForm() {
+        if (!cardForm) return;
+        cardForm.classList.remove('hidden');
+        cardNameInput.focus();
+      }
+
+      function closeCardForm() {
+        if (!cardForm) return;
+        cardForm.classList.add('hidden');
+        cardForm.reset();
+        cardBalanceInput.value = '0';
+      }
+
+      function createCard() {
+        const name = cardNameInput.value.trim() || 'Моя картка';
+        const type = cardTypeSelect.value;
+        const balance = Number(cardBalanceInput.value) || 0;
+        const number = Array.from({ length: 16 }, () => Math.floor(Math.random() * 10)).join('');
+        const formatted = formatCardNumber(number);
+        const cards = loadCards();
+        const user = getCurrentUser();
+        if (!user) return;
+        cards[user] = cards[user] || [];
+        cards[user].push({ name, type, balance, number: formatted });
+        saveCards(cards);
+        renderCards();
+        updateHeroCard();
+        closeCardForm();
+        updateStatus('Картку створено.');
+      }
+
+      function updateHeroCard() {
+        const current = getCurrentUserData();
+        const heroLabel = document.querySelector('.hero-card__label');
+        const heroBalance = document.querySelector('.hero-card__balance');
+        const heroNumber = document.querySelector('.hero-card__number');
+        const heroName = document.querySelector('.hero-card__footer strong');
+        const cards = getCurrentUserCards();
+        if (cards.length > 0) {
+          const active = cards[0];
+          if (heroBalance) heroBalance.textContent = `${active.balance} ₴`;
+          if (heroNumber) heroNumber.textContent = active.number;
+          if (heroLabel) heroLabel.textContent = active.type;
+          if (heroName) heroName.textContent = current ? current.nickname || current.username : 'O. ДЕВЕЛОПЕР';
+        } else {
+          if (heroBalance) heroBalance.textContent = '591 ₴';
+          if (heroNumber) heroNumber.textContent = '5469 3287 7421 0014';
+          if (heroLabel) heroLabel.textContent = 'BVR';
+          if (heroName) heroName.textContent = current ? current.nickname || current.username : 'O. ДЕВЕЛОПЕР';
+        }
+      }
+
+      function updateAvatarPreview() {
+        const avatarUrl = profileAvatarInput.value.trim();
+        if (!profilePreview) return;
+        if (avatarUrl) {
+          profilePreview.style.backgroundImage = `url(${avatarUrl})`;
+          profilePreview.textContent = '';
+          if (userAvatar) {
+            userAvatar.innerHTML = `<img src="${avatarUrl}" alt="Аватар">`;
+            userAvatar.classList.add('visible');
+          }
+        } else {
+          const current = getCurrentUserData();
+          profilePreview.style.backgroundImage = 'none';
+          profilePreview.textContent = current && current.nickname ? current.nickname[0].toUpperCase() : '?';
+          if (userAvatar) {
+            if (current && current.avatar) {
+              userAvatar.innerHTML = `<img src="${current.avatar}" alt="Аватар">`;
+              userAvatar.classList.add('visible');
+            } else if (current) {
+              userAvatar.innerHTML = current.nickname ? current.nickname[0].toUpperCase() : current.username[0].toUpperCase();
+              userAvatar.classList.add('visible');
+            } else {
+              userAvatar.classList.remove('visible');
+              userAvatar.innerHTML = '';
+            }
+          }
+        }
+      }
+
+      function handleAvatarFile(event) {
+        if (!event.target.files || !event.target.files[0]) return;
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(loadEvent) {
+          const dataUrl = loadEvent.target.result;
+          if (profileAvatarInput) profileAvatarInput.value = dataUrl;
+          if (profilePreview) {
+            profilePreview.style.backgroundImage = `url(${dataUrl})`;
+            profilePreview.textContent = '';
+          }
+          if (userAvatar) {
+            userAvatar.innerHTML = `<img src="${dataUrl}" alt="Аватар">`;
+            userAvatar.classList.add('visible');
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function logoutUser() {
+        localStorage.removeItem('bvr_current_user');
+        closeProfileModal();
+        updateLoginButton();
+      }
+
+      profileAvatarInput.addEventListener('input', updateAvatarPreview);
+      if (profileAvatarFileInput) {
+        profileAvatarFileInput.addEventListener('change', handleAvatarFile);
+      }
+      if (profileAvatarChangeButton && profileAvatarFileInput) {
+        profileAvatarChangeButton.addEventListener('click', function() {
+          profileAvatarFileInput.click();
+        });
+      }
+      profileForm.addEventListener('submit', saveProfileChanges);
+      profileLogout.addEventListener('click', function() {
+        if (confirm('Ви дійсно хочете вийти?')) {
+          logoutUser();
+        }
+      });
+      if (profileClose) {
+        profileClose.addEventListener('click', closeProfileModal);
+      }
+
+      if (createCardButton) {
+        createCardButton.addEventListener('click', openCardForm);
+      }
+      if (createCardHeaderButton) {
+        createCardHeaderButton.addEventListener('click', openCardForm);
+      }
+      if (cardForm) {
+        cardForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          createCard();
+        });
+      }
+      if (cardCancel) {
+        cardCancel.addEventListener('click', closeCardForm);
+      }
+
+      function renderUserProfiles() {
+        if (!profilesList) return;
+        const users = loadUsers();
+        const entries = Object.entries(users);
+        if (entries.length === 0) {
+          profilesList.innerHTML = '<p class="admin-profiles__empty">Немає зареєстрованих профілів.</p>';
+          return;
+        }
+        profilesList.innerHTML = entries.map(([username, data]) => {
+          const profile = typeof data === 'string'
+            ? { password: data, email: '---', phone: '---', verified: false, nickname: username, avatar: '' }
+            : { password: data.password, email: data.email || '---', phone: data.phone || '---', verified: data.verified || false, nickname: data.nickname || username, avatar: data.avatar || '' };
+          return `
+            <div class="admin-profiles__item" data-username="${username}">
+              <div class="admin-profiles__info">
+                <div class="admin-profiles__title">
+                  <strong>${profile.nickname}</strong>
+                  ${profile.verified ? '<span class="admin-profiles__premium">✔ Premium</span>' : ''}
+                </div>
+                <p>Пошта: <span class="profile-email">${profile.email}</span></p>
+                <p>Телефон: <span class="profile-phone">${profile.phone}</span></p>
+              </div>
+              <div class="admin-profiles__actions">
+                <button type="button" class="admin-profiles__verify" data-username="${username}">${profile.verified ? 'Зняти преміум' : 'Дати преміум'}</button>
+                <button type="button" class="admin-profiles__edit" data-username="${username}">Редагувати</button>
+                <button type="button" class="admin-profiles__delete" data-username="${username}">Видалити</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        profilesList.querySelectorAll('.admin-profiles__delete').forEach(button => {
+          button.addEventListener('click', function() {
+            deleteUser(this.dataset.username);
+          });
+        });
+        profilesList.querySelectorAll('.admin-profiles__verify').forEach(button => {
+          button.addEventListener('click', function() {
+            toggleUserVerification(this.dataset.username);
+          });
+        });
+        profilesList.querySelectorAll('.admin-profiles__edit').forEach(button => {
+          button.addEventListener('click', function() {
+            startEditUser(this.dataset.username);
+          });
+        });
+      }
+
+      function toggleUserVerification(username) {
+        const users = loadUsers();
+        const user = users[username];
+        if (!user || typeof user === 'string') return;
+        user.verified = !user.verified;
+        saveUsers(users);
+        renderUserProfiles();
+        updateStatus(`Профіль ${username} ${user.verified ? 'перевірено' : 'не перевірено'}.`);
+      }
+
+      function startEditUser(username) {
+        const users = loadUsers();
+        const user = users[username];
+        if (!user || typeof user === 'string') return;
+        const item = profilesList.querySelector(`[data-username="${username}"]`);
+        if (!item) return;
+        item.innerHTML = `
+          <div class="admin-profiles__edit-form">
+            <div class="form-group">
+              <label>Пошта:</label>
+              <input type="email" class="admin-profiles__input admin-email-input" value="${user.email || ''}">
+            </div>
+            <div class="form-group">
+              <label>Телефон:</label>
+              <input type="tel" class="admin-profiles__input admin-phone-input" value="${user.phone || ''}">
+            </div>
+            <div class="admin-profiles__edit-actions">
+              <button type="button" class="admin-profiles__save" data-username="${username}">Зберегти</button>
+              <button type="button" class="admin-profiles__cancel" data-username="${username}">Скасувати</button>
+            </div>
+          </div>
+        `;
+        item.querySelector('.admin-profiles__save').addEventListener('click', function() {
+          const emailValue = item.querySelector('.admin-email-input').value.trim();
+          const phoneValue = item.querySelector('.admin-phone-input').value.trim();
+          saveUserEdits(username, emailValue, phoneValue);
+        });
+        item.querySelector('.admin-profiles__cancel').addEventListener('click', function() {
+          renderUserProfiles();
+        });
+      }
+
+      function saveUserEdits(username, email, phone) {
+        if (!email || !phone) {
+          alert('Пошта та телефон не можуть бути порожніми.');
+          return;
+        }
+        const users = loadUsers();
+        const user = users[username];
+        if (!user || typeof user === 'string') return;
+        user.email = email;
+        user.phone = phone;
+        saveUsers(users);
+        renderUserProfiles();
+        updateStatus(`Профіль ${username} оновлено.`);
+      }
+
+      function deleteUser(username) {
+        const users = loadUsers();
+        if (!users[username]) return;
+        delete users[username];
+        saveUsers(users);
+        if (getCurrentUser() === username) {
+          localStorage.removeItem('bvr_current_user');
+          updateLoginButton();
+        }
+        renderUserProfiles();
+        updateStatus(`Профіль ${username} видалено.`);
+      }
+
+      function logoutUser() {
+        localStorage.removeItem('bvr_current_user');
+        updateLoginButton();
+      }
+
+      function updateModalMode() {
+        if (isLoginMode) {
+          loginTitle.textContent = 'Увійти';
+          loginSubmit.textContent = 'Увійти';
+          loginToggle.textContent = 'Зареєструватися';
+          emailGroup.classList.add('hidden');
+          phoneGroup.classList.add('hidden');
+          emailInput.required = false;
+          phoneInput.required = false;
+        } else {
+          loginTitle.textContent = 'Зареєструватися';
+          loginSubmit.textContent = 'Зареєструватися';
+          loginToggle.textContent = 'Увійти';
+          emailGroup.classList.remove('hidden');
+          phoneGroup.classList.remove('hidden');
+          emailInput.required = true;
+          phoneInput.required = true;
+        }
+      }
+
+      function updateUserAvatar() {
+        if (!userAvatar) return;
+        const current = getCurrentUserData();
+        if (!current) {
+          userAvatar.classList.remove('visible');
+          userAvatar.innerHTML = '';
+          return;
+        }
+        if (current.avatar) {
+          userAvatar.innerHTML = `<img src="${current.avatar}" alt="Аватар">`;
+        } else {
+          userAvatar.innerHTML = current.nickname ? current.nickname[0].toUpperCase() : current.username[0].toUpperCase();
+          userAvatar.style.backgroundImage = 'none';
+        }
+        userAvatar.classList.add('visible');
+      }
+
+      function updateLoginButton() {
+        if (!authButtons) return;
+        authButtons.style.display = 'flex';
+        loginTrigger.style.display = 'inline-flex';
+        registerTrigger.style.display = 'inline-flex';
+
+        const logged = isLoggedIn();
+        if (logged) {
+          registerTrigger.style.display = 'none';
+          const displayName = getDisplayName();
+          loginTrigger.innerHTML = `${displayName} <span class="login-check">✔</span>`;
+          loginTrigger.classList.add('logged-in');
+          updateUserAvatar();
+          if (createCardButton) createCardButton.style.display = 'inline-flex';
+          if (createCardHeaderButton) createCardHeaderButton.style.display = 'inline-flex';
+        } else {
+          loginTrigger.textContent = 'Увійти';
+          loginTrigger.classList.remove('logged-in');
+          if (userAvatar) {
+            userAvatar.classList.remove('visible');
+            userAvatar.innerHTML = '';
+          }
+          if (createCardButton) createCardButton.style.display = 'none';
+          if (createCardHeaderButton) createCardHeaderButton.style.display = 'none';
+          closeCardForm();
+        }
+
+        renderCards();
+        updateHeroCard();
+      }
+
+      updateLoginButton();
+
+      loginTrigger.addEventListener('click', function() {
+        if (isLoggedIn()) {
+          openProfileModal();
+          return;
+        }
+        isLoginMode = true;
+        updateModalMode();
+        loginModal.style.display = 'flex';
+      });
+
+      registerTrigger.addEventListener('click', function() {
+        isLoginMode = false;
+        updateModalMode();
+        loginModal.style.display = 'flex';
+      });
+
+      loginClose.addEventListener('click', function() {
+        loginModal.style.display = 'none';
+        loginForm.reset();
+      });
+
+      loginToggle.addEventListener('click', function() {
+        isLoginMode = !isLoginMode;
+        updateModalMode();
+      });
+
+      loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!username || !password) {
+          alert('Будь ласка, введіть ім\'я користувача та пароль.');
+          return;
+        }
+
+        if (isLoginMode) {
+          if (loginUser(username, password)) {
+            alert('Успішний вхід!');
+            loginModal.style.display = 'none';
+            loginForm.reset();
+            updateLoginButton();
+          } else {
+            alert('Невірне ім\'я користувача або пароль.');
+          }
+          return;
+        }
+
+        if (!email || !phone) {
+          alert('Будь ласка, введіть електронну пошту та номер телефону.');
+          return;
+        }
+
+        if (registerUser(username, password, email, phone)) {
+          alert('Реєстрація успішна!');
+          loginModal.style.display = 'none';
+          loginForm.reset();
+          updateLoginButton();
+        } else {
+          alert('Користувач з таким ім\'ям вже існує.');
+        }
+      });
+
+      function toggleAdminPanel() {
+        document.body.classList.toggle('admin-open');
+        const isOpen = document.body.classList.contains('admin-open');
+        adminPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+      }
+
+      document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.altKey && event.key.toLowerCase() === 'e') {
+          event.preventDefault();
+          toggleAdminPanel();
+        }
+      });
+
+      function updateStatus(message) {
+        if (adminStatus) adminStatus.textContent = `Статус: ${message}`;
+      }
+
+      adminButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const action = this.dataset.action;
+          switch (action) {
+            case 'status':
+              updateStatus('Всі системи працюють.');
+              break;
+            case 'tests':
+              updateStatus('Запущено тестовий режим.');
+              break;
+            case 'reload':
+              updateStatus('Інтерфейс перезавантажено.');
+              break;
+            case 'info':
+              updateStatus('Інформація про панель: лише для вас.');
+              break;
+            case 'console':
+              if (consoleModal) consoleModal.style.display = 'flex';
+              updateStatus('Відкрито консоль розробника.');
+              break;
+            case 'profiles':
+              if (adminProfiles) adminProfiles.style.display = 'block';
+              renderUserProfiles();
+              updateStatus('Відкрито керування профілями.');
+              break;
+            default:
+              updateStatus('Дія виконана.');
+          }
+        });
+      });
+
+      adminTrigger.addEventListener('click', toggleAdminPanel);
+      adminClose.addEventListener('click', function() {
+        document.body.classList.remove('admin-open');
+        adminPanel.setAttribute('aria-hidden', 'true');
+      });
+
+      if (consoleRun) {
+        consoleRun.addEventListener('click', function() {
+          const code = consoleInput.value;
+          if (!code.trim()) return;
+          try {
+            const result = eval(code);
+            console.log('Результат:', result);
+            alert('Код виконано. Перевірте консоль браузера для результату.');
+          } catch (error) {
+            console.error('Помилка:', error);
+            alert('Помилка виконання коду: ' + error.message);
+          }
+        });
+      }
+
+      if (profilesClose) {
+        profilesClose.addEventListener('click', function() {
+          if (adminProfiles) adminProfiles.style.display = 'none';
+        });
+      }
+
+      if (consoleClose) {
+        consoleClose.addEventListener('click', function() {
+          if (consoleModal) consoleModal.style.display = 'none';
+          if (consoleInput) consoleInput.value = '';
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>
